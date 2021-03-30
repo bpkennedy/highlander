@@ -1,4 +1,4 @@
-$spaceamounts: (1, 2, 3, 4, 5);
+$spaceamounts: (1, 2, 3, 4, 5, 6);
 $sides: (top, bottom, left, right);
 
 @each $space in $spaceamounts {
@@ -6,7 +6,7 @@ $sides: (top, bottom, left, right);
     .m-#{str-slice($side, 0, 1)}-#{$space} {
       margin-#{$side}: #{$space/4}rem !important;
     }
-  
+
     .p-#{str-slice($side, 0, 1)}-#{$space} {
       padding-#{$side}: #{$space/4}rem !important;
     }
@@ -14,7 +14,7 @@ $sides: (top, bottom, left, right);
     .m-#{str-slice($side, 0, 1)}-none {
       margin-#{$side}: #{$space/4}rem !important;
     }
-  
+
     .p-#{str-slice($side, 0, 1)}-none {
       padding-#{$side}: #{$space/4}rem !important;
     }
@@ -23,7 +23,7 @@ $sides: (top, bottom, left, right);
       margin-left: #{$space/4}rem !important;
       margin-right: #{$space/4}rem !important;
     }
-  
+
     .p-y-#{$space} {
       padding-top: #{$space/4}rem !important;
       padding-bottom: #{$space/4}rem !important;

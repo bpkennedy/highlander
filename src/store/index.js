@@ -5,11 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    messages: [],
   },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+  mutations: {},
+  actions: {},
+  modules: {}
 })

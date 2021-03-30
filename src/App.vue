@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="flex-column full-height">
     <div class="flex-row flex-1 navbar-height">
-      <navbar class="flex-1" />    
+      <navbar class="flex-1" />
     </div>
     <div class="flex-row flex-1">
       <sidebar class="flex-1" />
@@ -24,8 +24,10 @@
 </script>
 
 <style lang="scss">
-  @import "../node_modules/nes.css/css/nes.css";
   @import "../node_modules/nes.icons/css/nes-icons.css";
+  @import "./styles/nes.css";
+  @import "./styles/_colors.scss";
+  @import "./styles/_typography.scss";
   @import "./styles/_spacing.scss";
   @import "./styles/_flex.scss";
 
@@ -44,9 +46,9 @@
     max-height: 6rem;
   }
 
-  .position-relative {
-    position: relative;
-  }
+  .position-relative { position: relative; }
+  .position-absolute { position: absolute; }
+  .bottom-center { bottom: 0; left: 0; right: 0; margin: auto; }
 
   .actionbar-height {
     max-height: 10rem;

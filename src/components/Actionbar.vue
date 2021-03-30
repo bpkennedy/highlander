@@ -6,6 +6,7 @@
         v-for="action of actionData"
         :key="action.id"
         :action="action"
+        class="text-sm"
       />
     </div>
   </div>
@@ -32,11 +33,11 @@ export default {
     }, {
       id: 5,
       date: new Date(),
-      message: 'You sense another immortal in the building.',
+      message: 'You run after the man.',
     }, {
       id: 6,
       date: new Date(),
-      message: 'You sense another immortal in the building.',
+      message: 'You attack the man.',
     }],
   }),
 }
@@ -62,6 +63,6 @@ export default {
   .horizontal-scrollbox {
     overflow-y: auto;
     overflow-x: hidden;
-    flex-direction: column-reverse
+    justify-content: flex-end;
   }
 </style>

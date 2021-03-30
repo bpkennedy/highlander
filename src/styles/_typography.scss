@@ -1,0 +1,7 @@
+$fontConfig: 'xs' .5, 'sm' .75, 'md' 1, 'lg' 1.25, 'xl' 1.5, 'xxl' 2;
+
+@each $tuple in $fontConfig {
+  .text-#{nth($tuple, 1)} {
+    font-size: #{nth($tuple, 2)}rem;
+  }
+}

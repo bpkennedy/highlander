@@ -1,13 +1,45 @@
 <template>
   <div class="nes-container with-title is-centered is-dark sidebar-width">
     <p class="title">Ridley</p>
-    <span class="nes-text is-primary">Power</span>
-    <progress class="nes-progress is-primary" value="80" max="100"></progress>
+    <stat-bar
+      v-for="att in attributes"
+      :key="att.name"
+      :label="att.name"
+      :bar-color="att.bgColor"
+      :text-color="att.color"
+      :value="att.value"
+      :max="att.max"
+    />
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  components: {
+    StatBar: () => import('./StatBar.vue'),
+  },
+  data: () => ({
+    attributes: [{
+      name: 'Quickening',
+      max: 100,
+      value: 25,
+      color: 'color-dark-normal',
+      bgColor: 'bg-color-error-normal',
+    },{
+      name: 'Honor',
+      max: 100,
+      value: 50,
+      color: 'color-dark-normal',
+      bgColor: 'bg-color-primary-normal',
+    },{
+      name: 'Power',
+      max: 100,
+      value: 55,
+      color: 'color-dark-normal',
+      bgColor: 'bg-color-primary-normal',
+    }],
+  }),
+}
 </script>
 
 <style lang="scss">

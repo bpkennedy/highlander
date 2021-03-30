@@ -1,5 +1,7 @@
 <template>
-  <span class="nes-text is-primary small-text text-left">{{ toSimpleTime(action.date) }} {{ action.message }}</span>
+  <span class="nes-text is-primary text-left">
+    {{ toSimpleTime(action.date) }} {{ action.message }}
+  </span>
 </template>
 
 <script>
@@ -21,9 +23,7 @@ export default {
 </script>
 
 <style lang="scss">
-.small-text {
-  font-size: .5rem;
-}
+
 .text-left {
   text-align: left;
 }

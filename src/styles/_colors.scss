@@ -1,0 +1,163 @@
+// Theme color palette
+$black: rgba(33, 37, 41, 1);
+$white: rgba(255, 255, 255, 1);
+
+$white-400: rgba(231, 231, 231, 1);
+$white-500: rgba(211, 211, 211, 1);
+$white-600: rgba(173, 175, 188, 1);
+
+$blue-400: rgba(32, 156, 238, 1);
+$blue-500: rgba(16, 141, 224, 1);
+$blue-600: rgba(0, 107, 179, 1);
+
+$green-400: rgba(146, 204, 65, 1);
+$green-500: rgba(118, 196, 66, 1);
+$green-600: rgba(74, 165, 46, 1);
+
+$yellow-400: rgba(247, 213, 29, 1);
+$yellow-500: rgba(242, 196, 9, 1);
+$yellow-600: rgba(229, 148, 0, 1);
+
+$red-400: rgba(231, 110, 85, 1);
+$red-500: rgba(206, 55, 43, 1);
+$red-600: rgba(140, 32, 34, 1);
+
+// Semantic/functional variables
+$dark-normal: $black;
+
+$default-normal: $white;
+$default-hover: $white-400;
+$default-shadow: $white-600;
+
+$disabled-normal: $white-500;
+$disabled-shadow: $white-600;
+
+$primary-normal: $blue-400;
+$primary-hover: $blue-500;
+$primary-shadow: $blue-600;
+
+$success-normal: $green-400;
+$success-hover: $green-500;
+$success-shadow: $green-600;
+
+$warning-normal: $yellow-400;
+$warning-hover: $yellow-500;
+$warning-shadow: $yellow-600;
+
+$error-normal: $red-400;
+$error-hover: $red-500;
+$error-shadow: $red-600;
+
+// Generate font and background color helper classes
+$themeColorMap: (
+        'dark-normal': $dark-normal,
+        'default-normal': $default-normal,
+        'default-hover': $default-hover,
+        'default-shadow': $default-shadow,
+        'disabled-normal': $disabled-normal,
+        'disabled-shadow': $disabled-shadow,
+        'primary-normal': $primary-normal,
+        'primary-hover': $primary-hover,
+        'primary-shadow': $primary-shadow,
+        'success-normal': $success-normal,
+        'success-hover': $success-hover,
+        'success-shadow': $success-shadow,
+        'warning-normal': $warning-normal,
+        'warning-hover': $warning-hover,
+        'warning-shadow': $warning-shadow,
+        'error-normal': $error-normal,
+        'error-hover': $error-hover,
+        'error-shadow': $error-shadow,
+);
+
+@each $key, $value in $themeColorMap {
+  .color-#{$key} { color: #{$value}; }
+  .bg-color-#{$key} {
+    background: #{$default-normal};
+    -webkit-appearance: none;
+    appearance: none;
+    &::-webkit-progress-bar {
+      background-color: #{$default-normal};
+    }
+    &::-webkit-progress-value {
+      background-color: #{$value};
+    }
+    &::-moz-progress-bar {
+      background-color: #{$value};
+    }
+    &::-ms-fill {
+      background-color: #{$value};
+      border: none;
+    }
+  }
+}
+
+
+// Official NES colors - https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#NES
+$color-00: #7c7c7c;
+$color-01: #0000fc;
+$color-02: #0000bc;
+$color-03: #4428bc;
+$color-04: #940084;
+$color-05: #a80020;
+$color-06: #a81000;
+$color-07: #881400;
+$color-08: #503000;
+$color-09: #007800;
+$color-0A: #006800;
+$color-0B: #005800;
+$color-0C: #004058;
+$color-0D: #000;
+$color-0E: #000;
+$color-0F: #000;
+
+$color-10: #bcbcbc;
+$color-11: #0078f8;
+$color-12: #0058f8;
+$color-13: #6844fc;
+$color-14: #d800cc;
+$color-15: #e40058;
+$color-16: #f83800;
+$color-17: #e45c10;
+$color-18: #ac7c00;
+$color-19: #00b800;
+$color-1A: #00a800;
+$color-1B: #00a844;
+$color-1C: #088;
+$color-1D: #000;
+$color-1E: #000;
+$color-1F: #000;
+
+$color-20: #f8f8f8;
+$color-21: #3cbcfc;
+$color-22: #6888fc;
+$color-23: #9878f8;
+$color-24: #f878f8;
+$color-25: #f85898;
+$color-26: #f87858;
+$color-27: #fca044;
+$color-28: #f8b800;
+$color-29: #b8f818;
+$color-2A: #58d854;
+$color-2B: #58f898;
+$color-2C: #00e8d8;
+$color-2D: #787878;
+$color-2E: #000;
+$color-2F: #000;
+
+$color-30: #fcfcfc;
+$color-31: #a4e4fc;
+$color-32: #b8b8f8;
+$color-33: #d8b8f8;
+$color-34: #f8b8f8;
+$color-35: #f8a4c0;
+$color-36: #f0d0b0;
+$color-37: #fbdfa6;
+$color-38: #f8d878;
+$color-39: #d8f878;
+$color-3A: #b8f8b8;
+$color-3B: #b8f8d8;
+$color-3C: #00fcfc;
+$color-3D: #d8d8d8;
+$color-3E: #000;
+$color-3F: #000;
