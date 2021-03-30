@@ -1,6 +1,7 @@
 <template>
   <div class="nes-container with-title is-centered is-dark">
-    <span class="title">Main panel</span>
+    <p class="title">There can be only one</p>
+    <router-link to="/">Apartment</router-link>
   </div>
 </template>
 

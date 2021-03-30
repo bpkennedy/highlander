@@ -1,32 +1,54 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div id="app" class="flex-column full-height">
+    <div class="flex-row flex-1 navbar-height">
+      <navbar class="flex-1" />    
     </div>
-    <router-view/>
+    <div class="flex-row flex-1">
+      <sidebar class="flex-1" />
+      <div class="flex-column flex-1">
+        <router-view class="flex-1" />
+        <actionbar class="flex-1 actionbar-height" />
+      </div>
+    </div>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+  export default {
+    components: {
+      Navbar: () => import('./components/Navbar.vue'),
+      Sidebar: () => import('./components/Sidebar.vue'),
+      Actionbar: () => import('./components/Actionbar.vue'),
+    },
   }
-}
+</script>
+
+<style lang="scss">
+  @import "../node_modules/nes.css/css/nes.css";
+  @import "../node_modules/nes.icons/css/nes-icons.css";
+  @import "./styles/_spacing.scss";
+  @import "./styles/_flex.scss";
+
+  html, body {
+    font-family: "Press Start 2P";
+    background: #212529;
+    color: #ffffff;
+    height: 100%;
+  }
+
+  .full-height {
+    height: 100%;
+  }
+
+  .navbar-height {
+    max-height: 6rem;
+  }
+
+  .position-relative {
+    position: relative;
+  }
+
+  .actionbar-height {
+    max-height: 10rem;
+  }
 </style>
