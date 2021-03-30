@@ -1,5 +1,10 @@
 <template>
   <div id="app" class="flex-column full-height">
+    <canvas
+        v-if="true"
+        id="debug"
+        class="debug-panel"
+    />
     <div class="flex-row flex-1 navbar-height">
       <navbar class="flex-1" />
     </div>
@@ -14,13 +19,18 @@
 </template>
 
 <script>
-  export default {
-    components: {
-      Navbar: () => import('./components/Navbar.vue'),
-      Sidebar: () => import('./components/Sidebar.vue'),
-      Actionbar: () => import('./components/Actionbar.vue'),
-    },
-  }
+import { startSimulation } from './sim'
+
+export default {
+  components: {
+    Navbar: () => import('./components/Navbar.vue'),
+    Sidebar: () => import('./components/Sidebar.vue'),
+    Actionbar: () => import('./components/Actionbar.vue'),
+  },
+  mounted() {
+    startSimulation(true)
+  },
+}
 </script>
 
 <style lang="scss">
@@ -30,6 +40,15 @@
   @import "./styles/_typography.scss";
   @import "./styles/_spacing.scss";
   @import "./styles/_flex.scss";
+
+  .debug-panel {
+    position: absolute;
+    width: 30rem;
+    height: 15rem;
+    right: -20rem;
+    top: 6rem;
+    z-index: 5;
+  }
 
   html, body {
     font-family: "Press Start 2P";
