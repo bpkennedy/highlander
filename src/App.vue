@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { startSimulation } from './sim'
+import { startSimulation } from './simulation'
 
 export default {
   components: {

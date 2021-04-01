@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --open --https",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve --open",
+    "build": "yarn inkify && vue-cli-service build",
+    "inkify": "./scripts/inkify.sh",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "inkjs": "^1.11.0",
     "luxon": "^1.26.0",
     "nes.icons": "^2.0.1",
     "typed.js": "^2.0.12",

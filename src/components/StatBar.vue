@@ -8,7 +8,7 @@
               class="flex-1"
               :class="textColor"
           >
-            {{value + '/' + max}}
+            {{val + '/' + max}}
           </div>
         </div>
       </div>
@@ -16,7 +16,7 @@
           :id="label"
           class="nes-progress"
           :class="barColor"
-          :value="value"
+          :value="val"
           :max="max"
       />
     </div>
@@ -46,7 +46,7 @@ export default {
         return FONT_COLOR_CLASSES.includes(value)
       },
     },
-    value: {
+    val: {
       type: Number,
       default: 0,
     },

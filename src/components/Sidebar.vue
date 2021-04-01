@@ -1,13 +1,13 @@
 <template>
   <div class="nes-container with-title is-centered is-dark sidebar-width">
-    <p class="title">Ridley</p>
+    <p class="title">Nameless</p>
     <stat-bar
       v-for="att in attributes"
       :key="att.name"
       :label="att.name"
       :bar-color="att.bgColor"
       :text-color="att.color"
-      :value="att.value"
+      :val="att.value"
       :max="att.max"
     />
   </div>

@@ -1,3 +1,6 @@
+import './flavorText'
+import { timers } from './timers'
+
 let debugContext
 
 export const startSimulation = (debugMode = false) => {
@@ -10,7 +13,16 @@ export const startSimulation = (debugMode = false) => {
 
 const gameLoop = timeStamp => {
   !debugContext ? draw() : drawDebug(timeStamp)
+
   window.requestAnimationFrame(gameLoop)
+
+  for (let i = 0; i < timers.length; i++) {
+    if (timeStamp > timers[i].nextFireTime) {
+      const timer = timers[i]
+      timer.nextFireTime = timeStamp + timer.delay
+      timer.doFunction(timeStamp)
+    }
+  }
 }
 
 let secondsPassed

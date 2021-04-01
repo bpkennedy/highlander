@@ -4547,6 +4547,11 @@ inherits@2.0.3:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
+inkjs@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/inkjs/-/inkjs-1.11.0.tgz#4293cd843371c147b75968760d1a03525e740763"
+  integrity sha512-mfXi2118gai0vp7ME8m1l0+rv66KDQlc3jXhfL4vryYVR+BhmxKAvs21N1O4qoUtvZ9fYrGJe5TJ0Smf3giSfQ==
+
 inquirer@^7.0.0, inquirer@^7.1.0:
   version "7.3.3"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-7.3.3.tgz#04d176b2af04afc157a83fd7c100e98ee0aad003"
