@@ -1,4 +1,3 @@
-import './flavorText'
 import { timers } from './timers'
 
 let debugContext

@@ -20,6 +20,7 @@
 
 <script>
 import { startSimulation } from './simulation'
+import { STARTED_DIALOGUE_ACTION } from './store'
 
 export default {
   components: {
@@ -29,6 +30,7 @@ export default {
   },
   mounted() {
     startSimulation(true)
+    this.$store.dispatch(STARTED_DIALOGUE_ACTION, 'intro')
   },
 }
 </script>

@@ -11,13 +11,22 @@ export default {
       type: Array,
       default: () => [''],
     },
+    singleString: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    textToType() {
+      return this.singleString ? [this.strings.join('<br><br>')] : this.strings
+    }
   },
   created() {
     this.$nextTick(() => {
       typed('.typed', {
-        strings: this.strings,
-        typeSpeed: 15,
-        showCursor: false,
+        strings: this.textToType,
+        typeSpeed: 20,
+        showCursor: true,
         onComplete: () => this.$emit('onComplete'),
         onBegin: () => this.$emit('onBegin'),
         onStart: () => this.$emit('onStart'),

@@ -4,23 +4,28 @@
       Main panel
     </span>
     <animated-typing
-      class="flex-column full-height align-center justify-center solid-opacity"
+      class="flex-column full-height justify-center solid-opacity"
       :class="{ 'fade-out': slowFadeGameGreeting }"
-      :strings="newGameGreeting"
+      :strings="story.sceneText"
+      :single-string="true"
       @onComplete="displayActions = true"
     />
     <button
+        v-for="choice in story.currentChoices"
+        :key="choice"
         type="button"
         class="nes-btn position-absolute bottom-center m-b-5 no-opacity"
         :class="{'fade-in': displayActions, 'fade-out': slowFadeGameGreeting }"
         @click="addFadeOut"
     >
-      Proceed
+      {{ choice }}
     </button>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   components: {
     AnimatedTyping: () => import('../components/AnimatedTyping.vue'),
@@ -28,27 +33,15 @@ export default {
   data: () => ({
     slowFadeGameGreeting: false,
     displayActions: false,
-    newGameGreeting: [
-      `From the dawn of time we came, moving silently down through the centuries.<br>
-      <br>
-      Living many secret lives,<br>
-      struggling to reach the time of the Gathering,<br>
-      when the few who remain will battle to the last.<br>
-      <br>
-      No one has ever known we were among you.
-      <br><br>
-      ...
-      <br><br>
-      ...
-      <br><br><br>
-      until now.`
-    ],
   }),
   methods: {
     addFadeOut() {
       this.slowFadeGameGreeting = true
     }
   },
+  computed: {
+    ...mapState(['story']),
+  }
 }
 </script>
 
