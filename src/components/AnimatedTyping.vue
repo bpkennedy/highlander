@@ -16,14 +16,15 @@ export default {
       default: false,
     },
   },
-  computed: {
-    textToType() {
-      return this.singleString ? [this.strings.join('<br><br>')] : this.strings
-    }
-  },
-  created() {
-    this.$nextTick(() => {
-      typed('.typed', {
+  data: () => ({
+    typed: null,
+  }),
+  methods: {
+    typeText() {
+      if (this.typed) {
+        this.typed.destroy()
+      }
+      this.typed = typed('.typed', {
         strings: this.textToType,
         typeSpeed: 20,
         showCursor: true,
@@ -32,6 +33,21 @@ export default {
         onStart: () => this.$emit('onStart'),
         onDestroy: () => this.$emit('onDestroy'),
       })
+    }
+  },
+  computed: {
+    textToType() {
+      return this.singleString ? [this.strings.join('<br><br>')] : this.strings
+    }
+  },
+  watch: {
+    strings: function () {
+      this.typeText()
+    },
+  },
+  created() {
+    this.$nextTick(() => {
+      this.typeText()
     })
   }
 }

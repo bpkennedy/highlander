@@ -1,63 +1,88 @@
 <template>
-  <div class="nes-container with-title is-centered is-dark">
-    <span class="title">
+  <div
+      class="nes-container with-title is-centered is-dark"
+      @click="touchedMainPanel"
+  >
+    <span class="title position-relative z-2">
       Main panel
     </span>
-    <animated-typing
-      class="flex-column full-height justify-center solid-opacity"
-      :class="{ 'fade-out': slowFadeGameGreeting }"
-      :strings="story.sceneText"
-      :single-string="true"
-      @onComplete="displayActions = true"
-    />
-    <button
-        v-for="choice in story.currentChoices"
-        :key="choice"
-        type="button"
-        class="nes-btn position-absolute bottom-center m-b-5 no-opacity"
-        :class="{'fade-in': displayActions, 'fade-out': slowFadeGameGreeting }"
-        @click="addFadeOut"
+
+    <scene image="https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/41694069/original/66a90c41f4dbbe1fcbfe6c4a4a4f03dc5ebea34b/create-a-pixel-art-background-and-scenery.png" />
+
+    <div
+        v-if="speakingCharacter"
+        class="full-height"
     >
-      {{ choice }}
-    </button>
+      <story-chat-head
+          v-if="speakingCharacter.id === PLAYER_ID"
+          :character="speakingCharacter"
+          :line="currentLine"
+          position="left"
+      />
+      <story-chat-head
+          v-if="speakingCharacter.id === NARRATOR_ID"
+          :character="speakingCharacter"
+          :line="currentLine"
+      />
+      <story-chat-head
+          v-if="speakingCharacter.id !== PLAYER_ID && speakingCharacter.id !== NARRATOR_ID"
+          :character="speakingCharacter"
+          :line="currentLine"
+          position="right"
+      />
+
+      <choices v-if="unPlayedLines.length === 0" :choices="story.currentChoices" />
+    </div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
 import { mapState } from 'vuex'
+import { PLAYER_ID, NARRATOR_ID, characters } from '../simulation/characters'
 
 export default {
   components: {
-    AnimatedTyping: () => import('../components/AnimatedTyping.vue'),
+    Choices: () => import('../components/Choices.vue'),
+    Scene: () => import('../components/Scene.vue'),
+    StoryChatHead: () => import('../components/StoryChatHead.vue'),
   },
   data: () => ({
-    slowFadeGameGreeting: false,
-    displayActions: false,
+    unPlayedLines: [],
+    playedLines: [],
+    currentLine: {},
+    PLAYER_ID,
+    NARRATOR_ID,
   }),
   methods: {
-    addFadeOut() {
-      this.slowFadeGameGreeting = true
-    }
+    touchedMainPanel() {
+      if (this.unPlayedLines.length > 0) {
+        this.addNewLine()
+      }
+    },
+    addNewLine() {
+      const lineToLoad = this.unPlayedLines.pop()
+      Vue.set(this, 'currentLine', lineToLoad)
+      Vue.set(this, 'playedLines', this.playedLines.concat([lineToLoad]))
+    },
   },
   computed: {
     ...mapState(['story']),
-  }
+    speakingCharacter() {
+      return characters[this.currentLine.speakerId]
+    },
+  },
+  watch: {
+    story: function (val) {
+      Vue.set(this, 'unPlayedLines', val.sceneText)
+      this.addNewLine()
+    },
+  },
 }
 </script>
 
 <style lang="scss">
-
-.no-opacity { opacity: 0; }
-.solid-opacity { opacity: 1; }
-
-.fade-in {
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 0s linear 0s, opacity 1s;
-}
-.fade-out {
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s linear 2s, opacity 2s;
+.z-2 {
+  z-index: 2;
 }
 </style>

@@ -3,10 +3,6 @@ import { Story } from 'inkjs'
 let inkInstance
 
 export const getStory = () => {
-  // return {
-  //   ...inkInstance,
-  //   gameData: loadStoryGameData(),
-  // }
   return loadStoryGameData()
 }
 
@@ -24,7 +20,11 @@ export const loadStoryGameData = () => {
   const sceneText = []
   let currentTags = []
   while (inkInstance.canContinue) {
-    sceneText.push(inkInstance.Continue())
+    const text = inkInstance.Continue()
+    sceneText.unshift({
+      speakerId: text.substring(0, 3),
+      text: text.slice(4),
+    })
     currentTags = currentTags.concat(inkInstance.currentTags)
   }
   const {currentChoices, variablesState} = inkInstance
@@ -42,14 +42,24 @@ export const loadStoryGameData = () => {
 }
 
 function transformVariablesState(variablesState) {
-  const globals = {}
-  variablesState._globalVariables.forEach((val, key) => globals[key] = val.value)
+  const globals = []
+  variablesState._globalVariables.forEach((val, key) => {
+    globals.push({
+      idx: key,
+      value: val.value,
+    })
+  })
   return globals
 }
 
 function transformCurrentChoices(currentChoices) {
-  const choices = {}
-  currentChoices.forEach((val, key) => choices[key] = val.text)
+  const choices = []
+  currentChoices.forEach((val, key) => {
+    choices.push({
+      idx: key,
+      value: val.text,
+    })
+  })
   return choices
 }
 

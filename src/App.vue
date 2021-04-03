@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="flex-column full-height">
     <canvas
-        v-if="true"
+        v-if="debugMode"
         id="debug"
         class="debug-panel"
     />
@@ -28,9 +28,12 @@ export default {
     Sidebar: () => import('./components/Sidebar.vue'),
     Actionbar: () => import('./components/Actionbar.vue'),
   },
+  data: () => ({
+    debugMode: false,
+  }),
   mounted() {
-    startSimulation(true)
-    this.$store.dispatch(STARTED_DIALOGUE_ACTION, 'intro')
+    startSimulation(this.debugMode)
+    this.$store.dispatch(STARTED_DIALOGUE_ACTION, 'conversation')
   },
 }
 </script>
@@ -59,9 +62,11 @@ export default {
     height: 100%;
   }
 
-  .full-height {
-    height: 100%;
-  }
+  .full-height { height: 100%; }
+  .full-width { width: 100%; }
+  .half-width { width: 50%; min-width: 50%; max-width: 50%; }
+  .no-opacity { opacity: 0; }
+  .solid-opacity { opacity: 1; }
 
   .navbar-height {
     max-height: 6rem;
@@ -69,9 +74,13 @@ export default {
 
   .position-relative { position: relative; }
   .position-absolute { position: absolute; }
+  .top-left { top: 0; left: 0; }
   .bottom-center { bottom: 0; left: 0; right: 0; margin: auto; }
 
   .actionbar-height {
     max-height: 10rem;
   }
+
+  .text-left { text-align: left; }
+  .text-right { text-align: right; }
 </style>

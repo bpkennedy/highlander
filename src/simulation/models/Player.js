@@ -93,8 +93,8 @@ const INV_DOLLARS = {
 
 
 export class Player extends Sprite {
-  constructor({ name }) {
-    super()
+  constructor({ id, name, img }) {
+    super({ id, img })
     this[`${ID_NAME.value}`] = name
 
     // statistics

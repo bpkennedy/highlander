@@ -4,11 +4,11 @@ const min = 60 * sec
 const seconds = numSec => Math.round(numSec * sec)
 const minutes = numMins => Math.round(min * numMins)
 
-const fiveSecTask = () => console.log('5')
-const thirtySecTask = () => console.log('30')
-const oneMinTask = () => console.log('60')
-const twoMinTask = () => console.log('120')
-const threeMinTask = () => console.log('180')
+const fiveSecTask = () => {}
+const thirtySecTask = () => {}
+const oneMinTask = () => {}
+const twoMinTask = () => {}
+const threeMinTask = () => {}
 
 export const timers = [
   { delay: seconds(5), nextFireTime: 0, doFunction: fiveSecTask, counter: 0 },

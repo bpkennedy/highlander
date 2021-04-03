@@ -21,10 +21,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
-.text-left {
-  text-align: left;
-}
-</style>

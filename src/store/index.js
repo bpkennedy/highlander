@@ -11,7 +11,12 @@ const REFRESH_STORY_MUTATION = 'REFRESH_STORY_MUTATION'
 export default new Vuex.Store({
   state: {
     messages: [],
-    story: null,
+    story: {
+      sceneText: [],
+      currentChoices: {},
+      currentTags: [],
+      globals: {},
+    },
   },
   actions: {
     async [STARTED_DIALOGUE_ACTION]({ commit }, storyName) {
