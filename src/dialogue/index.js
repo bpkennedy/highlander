@@ -56,8 +56,9 @@ function transformCurrentChoices(currentChoices) {
   const choices = []
   currentChoices.forEach((val, key) => {
     choices.push({
+      choiceId: val.text.substring(val.text.length - 3, 3),
       idx: key,
-      value: val.text,
+      value: val.text.substring(0, val.text.length - 3),
     })
   })
   return choices
@@ -71,5 +72,5 @@ function transformCurrentChoices(currentChoices) {
 //   `You can see the mouth of the alleyway, where cars are swishing past. No-one's paying you a second thought.`,
 //   `Your mouth feels like you smoked a pack of cigarettes in ten minutes. You need water. Or maybe a whiskey?`,
 //   `When did it get dark? The dingy alley wall sconces are flickering and wash the wet asphalt with a hazy yellow glow.`,
-//   `Well, at least you're not dead. Oh wait.`,
+//   `Well, at least you're not dead.`,
 // ]

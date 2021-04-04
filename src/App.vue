@@ -33,7 +33,7 @@ export default {
   }),
   mounted() {
     startSimulation(this.debugMode)
-    this.$store.dispatch(STARTED_DIALOGUE_ACTION, 'conversation')
+    this.$store.dispatch(STARTED_DIALOGUE_ACTION, 'wakeup')
   },
 }
 </script>

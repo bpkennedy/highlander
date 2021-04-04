@@ -14,7 +14,8 @@
 </template>
 
 <script>
-import { SELECTED_DIALOGUE_CHOICE_ACTION } from '../store'
+import { SELECTED_DIALOGUE_CHOICE_ACTION, PLAYER_CHOICE_PAUSED_ACTION } from '../store'
+import { choiceSideEffects } from '../dialogue/choiceSideEffects'
 
 export default {
   props: {
@@ -31,7 +32,11 @@ export default {
     performFadeOut: false,
   }),
   methods: {
-    choiceClicked(choice) {
+    async choiceClicked(choice) {
+      if (choiceSideEffects[choice.id]) {
+        this.$store.dispatch(PLAYER_CHOICE_PAUSED_ACTION, choice)
+        await choiceSideEffects[choice.id].callback()
+      }
       this.$store.dispatch(SELECTED_DIALOGUE_CHOICE_ACTION, choice.idx)
       if (this.fadeOut) {
         this.performFadeOut = true
