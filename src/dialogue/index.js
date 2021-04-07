@@ -8,8 +8,8 @@ export const getStory = () => {
 
 export const buildStory = async (storyTitle) => {
   inkInstance = null
-  const inkContent = (await import(`./generated/${storyTitle}.js`)).default
-  inkInstance = new Story(inkContent)
+  const { storyContent } = await import(`./generated/${storyTitle}.js`)
+  inkInstance = new Story(storyContent)
 }
 
 export const chooseDialogueChoice = choiceIndex => {
