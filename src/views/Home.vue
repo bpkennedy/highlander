@@ -11,27 +11,28 @@
 
     <div
         v-if="speakingCharacter"
-        class="full-height"
+        class="flex-column flex-1"
     >
+      <story-chat-head
+          v-if="speakingCharacter.id === NARRATOR_ID"
+          :character="speakingCharacter"
+          :line="currentLine"
+      />
+      <choices v-if="unPlayedLines.length === 0" :choices="story.currentChoices" />
       <story-chat-head
           v-if="speakingCharacter.id === PLAYER_ID"
           :character="speakingCharacter"
           :line="currentLine"
           position="left"
-      />
-      <story-chat-head
-          v-if="speakingCharacter.id === NARRATOR_ID"
-          :character="speakingCharacter"
-          :line="currentLine"
+          class="flex-1"
       />
       <story-chat-head
           v-if="speakingCharacter.id !== PLAYER_ID && speakingCharacter.id !== NARRATOR_ID"
           :character="speakingCharacter"
           :line="currentLine"
           position="right"
+          class="flex-1"
       />
-
-      <choices v-if="unPlayedLines.length === 0" :choices="story.currentChoices" />
     </div>
   </div>
 </template>

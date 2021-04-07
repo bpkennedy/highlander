@@ -2,8 +2,8 @@
   <div
       class="color-dark-normal flex-row"
       :class="{
-        'align-end full-height': position === 'left',
-        'align-end full-height flex-row-reverse': position === 'right',
+        'align-end': position === 'left',
+        'align-end flex-row-reverse': position === 'right',
       }"
   >
     <avatar

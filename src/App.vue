@@ -11,7 +11,7 @@
     <div class="flex-row flex-1">
       <sidebar class="flex-1" />
       <div class="flex-column flex-1">
-        <router-view class="flex-1" />
+        <router-view class="flex-column flex-1" />
         <actionbar class="flex-1 actionbar-height" />
       </div>
     </div>
