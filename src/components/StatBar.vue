@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { BACKGROUND_COLOR_CLASSES, FONT_COLOR_CLASSES } from '../constants'
+import { PROGRESS_COLOR_CLASSES, FONT_COLOR_CLASSES } from '../constants'
 
 export default {
   props: {
@@ -34,9 +34,9 @@ export default {
     },
     barColor: {
       type: String,
-      default: 'bg-color-primary-normal',
+      default: 'progress-color-primary-normal',
       validator: function (value) {
-        return BACKGROUND_COLOR_CLASSES.includes(value)
+        return PROGRESS_COLOR_CLASSES.includes(value)
       },
     },
     textColor: {

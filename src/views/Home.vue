@@ -34,49 +34,52 @@
           class="flex-1"
       />
     </div>
+    <dialogue v-if="sideEffect && sideEffect.id === PICK_NAME_CHOICE" class="flex-column">
+      <simple-form
+          form-id="name"
+          class="width-40 margin-auto p-t-10"
+          @submitted="sideEffect.execute"
+      />
+    </dialogue>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
 import { mapState } from 'vuex'
-import { PLAYER_ID, NARRATOR_ID, characters } from '../simulation/characters'
+import { PLAYER_ID, NARRATOR_ID, characters } from '@/simulation/characters'
+import { PICK_NAME_CHOICE } from '@/dialogue/choiceSideEffects'
+import { ADD_NEW_LINE_MUTATION, ADD_SCENE_TEXT_MUTATION } from '../store'
 
 export default {
   components: {
+    SimpleForm: () => import('../components/SimpleForm.vue'),
+    Dialogue: () => import('../components/Dialogue.vue'),
     Choices: () => import('../components/Choices.vue'),
     Scene: () => import('../components/Scene.vue'),
     StoryChatHead: () => import('../components/StoryChatHead.vue'),
   },
   data: () => ({
-    unPlayedLines: [],
-    playedLines: [],
-    currentLine: {},
     PLAYER_ID,
     NARRATOR_ID,
+    PICK_NAME_CHOICE,
   }),
   methods: {
     touchedMainPanel() {
       if (this.unPlayedLines.length > 0) {
-        this.addNewLine()
+        this.$store.commit(ADD_NEW_LINE_MUTATION)
       }
-    },
-    addNewLine() {
-      const lineToLoad = this.unPlayedLines.pop()
-      Vue.set(this, 'currentLine', lineToLoad)
-      Vue.set(this, 'playedLines', this.playedLines.concat([lineToLoad]))
     },
   },
   computed: {
-    ...mapState(['story']),
+    ...mapState(['story', 'sideEffect', 'unPlayedLines', 'currentLine']),
     speakingCharacter() {
       return characters[this.currentLine.speakerId]
     },
   },
   watch: {
     story: function (val) {
-      Vue.set(this, 'unPlayedLines', val.sceneText)
-      this.addNewLine()
+      this.$store.commit(ADD_SCENE_TEXT_MUTATION, val.sceneText)
+      this.$store.commit(ADD_NEW_LINE_MUTATION)
     },
   },
 }

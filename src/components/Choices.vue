@@ -33,11 +33,14 @@ export default {
   }),
   methods: {
     async choiceClicked(choice) {
-      if (choiceSideEffects[choice.id]) {
-        this.$store.dispatch(PLAYER_CHOICE_PAUSED_ACTION, choice)
-        await choiceSideEffects[choice.id].callback()
+      if (choiceSideEffects[choice.choiceId]) {
+        await this.$store.dispatch(PLAYER_CHOICE_PAUSED_ACTION, {
+          sideEffect: choiceSideEffects[choice.choiceId],
+          choiceIdx: choice.idx
+        })
+        return
       }
-      this.$store.dispatch(SELECTED_DIALOGUE_CHOICE_ACTION, choice.idx)
+      await this.$store.dispatch(SELECTED_DIALOGUE_CHOICE_ACTION, choice.idx)
       if (this.fadeOut) {
         this.performFadeOut = true
       }

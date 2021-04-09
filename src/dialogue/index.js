@@ -13,6 +13,8 @@ export const buildStory = async (storyTitle) => {
 }
 
 export const chooseDialogueChoice = choiceIndex => {
+  console.log('choiceIndex is')
+  console.log(choiceIndex)
   inkInstance.ChooseChoiceIndex(choiceIndex)
 }
 
@@ -56,9 +58,9 @@ function transformCurrentChoices(currentChoices) {
   const choices = []
   currentChoices.forEach((val, key) => {
     choices.push({
-      choiceId: val.text.substring(val.text.length - 3, 3),
+      choiceId: val.text.substring(val.text.length -3),
       idx: key,
-      value: val.text.substring(0, val.text.length - 3),
+      value: val.text.substring(val.text.length - 4, 0),
     })
   })
   return choices

@@ -3,7 +3,7 @@ CONST Player  = "001"
 CONST Lambo  = "002"
 
 CONST no_side_effect = "000"
-CONST pick_name = "001"
+CONST pick_name_side_effect = "001"
 
 VAR know_lando_name = false
 
@@ -51,7 +51,7 @@ VAR know_lando_name = false
 === rename ===
 {Narrator} As he gets closer a strange sick sensation starts to buzz in your ears, as if you were getting lightheaded.
 {Lambo} "How about your name?"
-    * Enter Your Name {pick_name}
+    * Enter Your Name {pick_name_side_effect}
         {Lambo} "Good to meet you. { know_lando_name == false:My name's Lambo.}
         -> END
         

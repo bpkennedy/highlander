@@ -1,6 +1,27 @@
-$spaceamounts: (1, 2, 3, 4, 5, 6);
-$sides: (top, bottom, left, right);
+$sizeamounts: (5, 10, 20, 30, 40, 50, 80, 100);
+@each $size in $sizeamounts {
+  .width-#{$size} {
+    width: #{$size}rem!important;
+  }
+  .max-width-#{$size} {
+    max-width: #{$size}rem!important;
+  }
+  .min-width-#{$size} {
+    min-width: #{$size}rem!important;
+  }
+  .height-#{$size} {
+    height: #{$size}rem!important;
+  }
+  .max-height-#{$size} {
+    max-height: #{$size}rem!important;
+  }
+  .min-height-#{$size} {
+    min-height: #{$size}rem!important;
+  }
+}
 
+$spaceamounts: (1, 2, 3, 4, 5, 6, 8, 10);
+$sides: (top, bottom, left, right);
 @each $space in $spaceamounts {
   @each $side in $sides {
     .m-#{str-slice($side, 0, 1)}-#{$space} {

@@ -8,7 +8,7 @@
   >
     <avatar
         v-if="character.id !== NARRATOR_ID"
-        class="flex-1 z-up nes-container p-a-none"
+        class="flex-1 z-up nes-container p-a-none profile-width"
         :image-url="character.img"
     />
     <div
@@ -70,6 +70,8 @@ export default {
 <style lang="scss">
 .z-up {
   z-index: 4;
+}
+.profile-width {
   max-width: 5.5rem;
 }
 </style>

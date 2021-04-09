@@ -73,6 +73,11 @@ $themeColorMap: (
 @each $key, $value in $themeColorMap {
   .color-#{$key} { color: #{$value}; }
   .bg-color-#{$key} {
+    background-color: #{$value};
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .progress-color-#{$key} {
     background: #{$default-normal};
     -webkit-appearance: none;
     appearance: none;
@@ -83,7 +88,7 @@ $themeColorMap: (
       background-color: #{$value};
     }
     &::-moz-progress-bar {
-      background-color: #{$value};
+      background-color: #{$default-normal};
     }
     &::-ms-fill {
       background-color: #{$value};

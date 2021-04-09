@@ -19,8 +19,7 @@
 </template>
 
 <script>
-import { startSimulation } from './simulation'
-import { STARTED_DIALOGUE_ACTION } from './store'
+import { SIMULATION_STARTED_ACTION, STARTED_DIALOGUE_ACTION } from './store'
 
 export default {
   components: {
@@ -32,7 +31,7 @@ export default {
     debugMode: false,
   }),
   mounted() {
-    startSimulation(this.debugMode)
+    this.$store.dispatch(SIMULATION_STARTED_ACTION, this.debugMode)
     this.$store.dispatch(STARTED_DIALOGUE_ACTION, 'wakeup')
   },
 }

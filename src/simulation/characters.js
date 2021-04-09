@@ -49,3 +49,7 @@ export const characters = {
   [BADGUY1_ID]: BadGuy1,
   [BADGUY2_ID]: BadGuy2,
 }
+
+export const updatePlayerName = name => {
+  player.name = name
+}

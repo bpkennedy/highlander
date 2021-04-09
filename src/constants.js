@@ -39,3 +39,25 @@ export const BACKGROUND_COLOR_CLASSES = [
   'bg-color-error-hover',
   'bg-color-error-shadow',
 ]
+
+export const PROGRESS_COLOR_CLASSES = [
+  'progress-color-dark-normal',
+  'progress-color-default-normal',
+  'progress-color-default-hover',
+  'progress-color-default-shadow',
+  'progress-color-disabled-normal',
+  'progress-color-disabled-shadow',
+  'progress-color-primary-normal',
+  'progress-color-primary-hover',
+  'progress-color-primary-shadow',
+  'progress-color-success-normal',
+  'progress-color-success-hover',
+  'progress-color-success-shadow',
+  'progress-color-warning-normal',
+  'progress-color-warning-hover',
+  'progress-color-warning-shadow',
+  'progress-color-error-normal',
+  'progress-color-error-hover',
+  'progress-color-error-shadow',
+]
+
