@@ -33,16 +33,14 @@ export default {
   }),
   methods: {
     async choiceClicked(choice) {
-      if (choiceSideEffects[choice.choiceId]) {
-        await this.$store.dispatch(PLAYER_CHOICE_PAUSED_ACTION, {
-          sideEffect: choiceSideEffects[choice.choiceId],
-          choiceIdx: choice.idx
-        })
-        return
-      }
-      await this.$store.dispatch(SELECTED_DIALOGUE_CHOICE_ACTION, choice.idx)
-      if (this.fadeOut) {
-        this.performFadeOut = true
+      const sideEffect = choiceSideEffects[choice.choiceId] ? choiceSideEffects[choice.choiceId](choice.idx) : false
+      if (sideEffect) {
+        await this.$store.dispatch(PLAYER_CHOICE_PAUSED_ACTION, sideEffect)
+      } else {
+        await this.$store.dispatch(SELECTED_DIALOGUE_CHOICE_ACTION, choice.idx)
+        if (this.fadeOut) {
+          this.performFadeOut = true
+        }
       }
     },
   },

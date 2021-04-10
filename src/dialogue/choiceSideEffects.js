@@ -13,5 +13,5 @@ const pickName = {
 }
 
 export const choiceSideEffects = {
-  [PICK_NAME_CHOICE]: pickName,
+  [PICK_NAME_CHOICE]: inkChoiceIdx => ({ ...pickName, inkChoiceIdx }),
 }

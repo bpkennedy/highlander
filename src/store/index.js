@@ -18,7 +18,6 @@ export const PLAYER_CHOICE_UNPAUSED_ACTION = 'PLAYER_CHOICE_UNPAUSED_ACTION'
 export const PLAYER_NAME_CHANGED_ACTION = 'PLAYER_NAME_CHANGED_ACTION'
 const UPDATE_PLAYER_MUTATION = 'UPDATE_PLAYER_MUTATION'
 const REFRESH_STORY_MUTATION = 'REFRESH_STORY_MUTATION'
-const SET_PAUSED_IDX_CHOICE_MUTATION = 'SET_PAUSED_IDX_CHOICE_MUTATION'
 const SET_CHOICE_SIDE_EFFECT_MUTATION = 'SET_CHOICE_SIDE_EFFECT_MUTATION'
 export const ADD_NEW_LINE_MUTATION = 'ADD_NEW_LINE_MUTATION'
 export const ADD_SCENE_TEXT_MUTATION = 'ADD_SCENE_TEXT_MUTATION'
@@ -26,7 +25,6 @@ export const ADD_SCENE_TEXT_MUTATION = 'ADD_SCENE_TEXT_MUTATION'
 export default new Vuex.Store({
   state: {
     player: {},
-    pausedChoiceIdx: 0,
     sideEffect: null,
     messages: [],
     unPlayedLines: [],
@@ -56,15 +54,13 @@ export default new Vuex.Store({
       chooseDialogueChoice(choiceIndex)
       commit(REFRESH_STORY_MUTATION)
     },
-    [PLAYER_CHOICE_PAUSED_ACTION]({ commit }, { sideEffect, choiceIdx }) {
+    [PLAYER_CHOICE_PAUSED_ACTION]({ commit }, sideEffect) {
       commit(SET_CHOICE_SIDE_EFFECT_MUTATION, sideEffect)
-      commit(SET_PAUSED_IDX_CHOICE_MUTATION, choiceIdx)
 
     },
     [PLAYER_CHOICE_UNPAUSED_ACTION]({ state, commit }) {
-      chooseDialogueChoice(state.pausedChoiceIdx)
+      chooseDialogueChoice(state.sideEffect.inkChoiceIdx)
       commit(SET_CHOICE_SIDE_EFFECT_MUTATION, null)
-      commit(SET_PAUSED_IDX_CHOICE_MUTATION, 0)
       commit(REFRESH_STORY_MUTATION)
     },
   },
@@ -73,7 +69,6 @@ export default new Vuex.Store({
       Vue.set(state, 'story', getStory())
     },
     [UPDATE_PLAYER_MUTATION]: setValue('player'),
-    [SET_PAUSED_IDX_CHOICE_MUTATION]: setValue('pausedChoiceIdx'),
     [SET_CHOICE_SIDE_EFFECT_MUTATION]: setValue('sideEffect'),
     [ADD_NEW_LINE_MUTATION](state) {
       const lineToLoad = state.unPlayedLines[state.unPlayedLines.length -1]
