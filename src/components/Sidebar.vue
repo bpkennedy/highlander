@@ -1,14 +1,14 @@
 <template>
   <div class="nes-container with-title is-centered is-dark sidebar-width">
-    <p class="title">{{ (player && player.name) ? player.name : 'Nameless' }}</p>
+    <p class="title">{{ player.name }}</p>
     <stat-bar
-      v-for="att in attributes"
-      :key="att.name"
-      :label="att.name"
-      :bar-color="att.progressColor"
-      :text-color="att.color"
-      :val="att.value"
-      :max="att.max"
+        v-for="att in player.attributes"
+        :key="att.value"
+        :label="att.display"
+        :bar-color="att.progressColor"
+        :text-color="att.color"
+        :val="att.val"
+        :max="att.max"
     />
   </div>
 </template>
@@ -20,29 +20,8 @@ export default {
   components: {
     StatBar: () => import('./StatBar.vue'),
   },
-  data: () => ({
-    attributes: [{
-      name: 'Quickening',
-      max: 100,
-      value: 25,
-      color: 'color-dark-normal',
-      progressColor: 'progress-color-error-normal',
-    },{
-      name: 'Honor',
-      max: 100,
-      value: 50,
-      color: 'color-dark-normal',
-      progressColor: 'progress-color-warning-normal',
-    },{
-      name: 'Power',
-      max: 100,
-      value: 55,
-      color: 'color-dark-normal',
-      progressColor: 'progress-color-primary-normal',
-    }],
-  }),
   computed: {
-    ...mapState(['player']),
+    ...mapState(['progress', 'player']),
   }
 }
 </script>

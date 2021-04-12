@@ -5,20 +5,29 @@
         id="debug"
         class="debug-panel"
     />
-    <div class="flex-row flex-1 navbar-height">
-      <navbar class="flex-1" />
+    <div v-if="progress > 100"
+         class="flex-row flex-1 navbar-height"
+    >
+      <navbar class="flex-1"/>
     </div>
     <div class="flex-row flex-1">
-      <sidebar class="flex-1" />
+      <sidebar
+          v-if="progress > 100"
+          class="flex-1"
+      />
       <div class="flex-column flex-1">
         <router-view class="flex-column flex-1" />
-        <actionbar class="flex-1 actionbar-height" />
+        <actionbar
+            v-if="progress > 100"
+            class="flex-1 actionbar-height"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { SIMULATION_STARTED_ACTION, STARTED_DIALOGUE_ACTION } from './store'
 
 export default {
@@ -30,8 +39,14 @@ export default {
   data: () => ({
     debugMode: false,
   }),
+  computed: {
+    ...mapState(['progress', 'storyMode', 'storyMemory']),
+  },
   mounted() {
     this.$store.dispatch(SIMULATION_STARTED_ACTION, this.debugMode)
+    if (this.storyMode) {
+      this.$store.dispatch(STARTED_DIALOGUE_ACTION, this.storyMemory.recentStory)
+    }
     this.$store.dispatch(STARTED_DIALOGUE_ACTION, 'wakeup')
   },
 }

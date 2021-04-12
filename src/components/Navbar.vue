@@ -1,10 +1,17 @@
 <template>
   <div class="nes-container with-title is-centered is-dark">
     <p class="title">There can be only one</p>
-    <router-link to="/">Apartment</router-link>
+    <div v-if="progress > 100">
+      <router-link to="/">Alley</router-link>
+    </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState(['progress']),
+  }
+}
 </script>

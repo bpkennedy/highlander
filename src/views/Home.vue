@@ -16,20 +16,20 @@
       <story-chat-head
           v-if="speakingCharacter.id === NARRATOR_ID"
           :character="speakingCharacter"
-          :line="currentLine"
+          :line="storySceneText.currentLine"
       />
-      <choices v-if="unPlayedLines.length === 0" :choices="story.currentChoices" />
+      <choices v-if="storySceneText.unPlayedLines.length === 0" :choices="story.currentChoices" />
       <story-chat-head
           v-if="speakingCharacter.id === PLAYER_ID"
           :character="speakingCharacter"
-          :line="currentLine"
+          :line="storySceneText.currentLine"
           position="left"
           class="flex-1"
       />
       <story-chat-head
           v-if="speakingCharacter.id !== PLAYER_ID && speakingCharacter.id !== NARRATOR_ID"
           :character="speakingCharacter"
-          :line="currentLine"
+          :line="storySceneText.currentLine"
           position="right"
           class="flex-1"
       />
@@ -65,15 +65,15 @@ export default {
   }),
   methods: {
     touchedMainPanel() {
-      if (this.unPlayedLines.length > 0) {
+      if (this.storySceneText.unPlayedLines.length > 0) {
         this.$store.commit(ADD_NEW_LINE_MUTATION)
       }
     },
   },
   computed: {
-    ...mapState(['story', 'sideEffect', 'unPlayedLines', 'currentLine']),
+    ...mapState(['story', 'sideEffect', 'storySceneText']),
     speakingCharacter() {
-      return characters[this.currentLine.speakerId]
+      return characters[this.storySceneText.currentLine.speakerId]
     },
   },
   watch: {

@@ -1,3 +1,4 @@
+import store, { DIALOGUE_COMPLETE_ACTION } from '../store'
 import { Story } from 'inkjs'
 
 let inkInstance
@@ -13,8 +14,6 @@ export const buildStory = async (storyTitle) => {
 }
 
 export const chooseDialogueChoice = choiceIndex => {
-  console.log('choiceIndex is')
-  console.log(choiceIndex)
   inkInstance.ChooseChoiceIndex(choiceIndex)
 }
 
@@ -23,16 +22,17 @@ export const loadStoryGameData = () => {
   let currentTags = []
   while (inkInstance.canContinue) {
     const text = inkInstance.Continue()
+    const hydratedText = fillVarReferences(text)
     sceneText.unshift({
-      speakerId: text.substring(0, 3),
-      text: text.slice(4),
+      speakerId: hydratedText.substring(0, 3),
+      text: hydratedText.slice(4),
     })
     currentTags = currentTags.concat(inkInstance.currentTags)
   }
   const {currentChoices, variablesState} = inkInstance
 
   if (!inkInstance.canContinue && !currentChoices.length) {
-    // console.log('game over')
+    store.dispatch(DIALOGUE_COMPLETE_ACTION)
   }
 
   return {
@@ -41,6 +41,18 @@ export const loadStoryGameData = () => {
     sceneText,
     currentTags,
   }
+}
+
+function fillVarReferences(textString) {
+  let newString = textString
+  const usedMarkers = textString.match(/[^[\]]+(?=]])/gm)
+  if (usedMarkers) {
+    for (const marker of usedMarkers) {
+      const stateValue = marker.split('.').reduce((o,i)=>o[i], store.state)
+      newString = textString.replace(`[[${marker}]]`, stateValue)
+    }
+  }
+  return newString
 }
 
 function transformVariablesState(variablesState) {
