@@ -9,6 +9,11 @@ const routes = [
     name: 'Home',
     component: () => import(/* webpackChunkName: "all" */ '../views/Home.vue')
   },
+  {
+    path: '/alley',
+    name: 'Alley',
+    component: () => import(/* webpackChunkName: "all" */ '../views/Alley.vue')
+  },
 ]
 
 const router = new VueRouter({

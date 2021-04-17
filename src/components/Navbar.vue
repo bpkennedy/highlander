@@ -1,8 +1,8 @@
 <template>
   <div class="nes-container with-title is-centered is-dark">
     <p class="title">There can be only one</p>
-    <div v-if="progress > 100">
-      <router-link to="/">Alley</router-link>
+    <div>
+      <router-link to="/alley">Alley</router-link>
     </div>
   </div>
 </template>

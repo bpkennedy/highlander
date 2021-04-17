@@ -5,9 +5,7 @@
         id="debug"
         class="debug-panel"
     />
-    <div v-if="progress > 100"
-         class="flex-row flex-1 navbar-height"
-    >
+    <div class="flex-row flex-1 navbar-height">
       <navbar class="flex-1"/>
     </div>
     <div class="flex-row flex-1">
@@ -97,4 +95,6 @@ export default {
 
   .text-left { text-align: left; }
   .text-right { text-align: right; }
+
+  .z-2 { z-index: 2; }
 </style>

@@ -1,4 +1,4 @@
-import { Sprite } from './Sprite'
+import { CharacterSprite } from './Sprite'
 
 export class Character extends Sprite {
   constructor({ id, name, img, description }) {

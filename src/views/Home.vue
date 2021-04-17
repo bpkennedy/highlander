@@ -84,9 +84,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-.z-2 {
-  z-index: 2;
-}
-</style>
