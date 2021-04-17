@@ -46,7 +46,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import { PLAYER_ID, NARRATOR_ID, characters } from '@/simulation/characters'
+import { PLAYER_ID, NARRATOR_ID, characters } from '@/simulation/services/characters'
 import { PICK_NAME_CHOICE } from '@/dialogue/choiceSideEffects'
 import { ADD_NEW_LINE_MUTATION, ADD_SCENE_TEXT_MUTATION } from '../store'
 

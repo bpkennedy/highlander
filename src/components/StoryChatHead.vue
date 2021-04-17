@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { NARRATOR_ID } from '../simulation/characters'
+import { NARRATOR_ID } from '../simulation/services/characters'
 
 export default {
   components: {

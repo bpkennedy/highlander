@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { buildStory, chooseDialogueChoice, getStory } from '@/dialogue'
 import { startSimulation } from '@/simulation'
-import {characters, PLAYER_ID, updatePlayerName } from '@/simulation/characters'
+import {characters, PLAYER_ID, updatePlayerName } from '@/simulation/services/characters'
 
 Vue.use(Vuex)
 
